@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MegaDesk_3_ZoeMiner
+namespace MegaDesk
 {
     public partial class MainMenu : Form
     {
@@ -27,9 +27,9 @@ namespace MegaDesk_3_ZoeMiner
 
         private void openViewQuotesBtn_Click(object sender, EventArgs e)
         {
-            ViewAllQuotes viewAllQuotesForm = new ViewAllQuotes();
-            viewAllQuotesForm.Tag = this;
-            viewAllQuotesForm.Show(this);
+            DisplayQuotes displayQuotesForm = new DisplayQuotes();
+            displayQuotesForm.Tag = this;
+            displayQuotesForm.Show(this);
             Hide();
         }
 

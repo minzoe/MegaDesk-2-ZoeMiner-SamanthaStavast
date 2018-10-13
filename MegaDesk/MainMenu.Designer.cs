@@ -1,4 +1,4 @@
-﻿namespace MegaDesk_3_ZoeMiner
+﻿namespace MegaDesk
 {
     partial class MainMenu
     {
@@ -78,12 +78,11 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::MegaDesk_3_ZoeMiner.Properties.Resources.desk;
-            this.pictureBox1.Location = new System.Drawing.Point(316, 39);
+            this.pictureBox1.Image = global::MegaDesk_3_ZoeMiner.Properties.Resources.desk1;
+            this.pictureBox1.Location = new System.Drawing.Point(275, 27);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(256, 256);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.Size = new System.Drawing.Size(297, 268);
+            this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
             // MainMenu
@@ -91,26 +90,24 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 361);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.exitMainMenuBtn);
             this.Controls.Add(this.openSearchQuotesBtn);
             this.Controls.Add(this.openViewQuotesBtn);
             this.Controls.Add(this.openAddNewQuoteBtn);
-            this.Controls.Add(this.pictureBox1);
             this.Name = "MainMenu";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button openAddNewQuoteBtn;
         private System.Windows.Forms.Button openViewQuotesBtn;
         private System.Windows.Forms.Button openSearchQuotesBtn;
         private System.Windows.Forms.Button exitMainMenuBtn;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

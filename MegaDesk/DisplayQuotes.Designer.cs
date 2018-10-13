@@ -1,4 +1,4 @@
-﻿namespace MegaDesk_3_ZoeMiner
+﻿namespace MegaDesk
 {
     partial class DisplayQuotes
     {
@@ -29,11 +29,13 @@
         private void InitializeComponent()
         {
             this.cancelDisplayQuoteBtn = new System.Windows.Forms.Button();
+            this.displayDataGrid = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.displayDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // cancelDisplayQuoteBtn
             // 
-            this.cancelDisplayQuoteBtn.Location = new System.Drawing.Point(312, 390);
+            this.cancelDisplayQuoteBtn.Location = new System.Drawing.Point(199, 312);
             this.cancelDisplayQuoteBtn.Name = "cancelDisplayQuoteBtn";
             this.cancelDisplayQuoteBtn.Size = new System.Drawing.Size(160, 48);
             this.cancelDisplayQuoteBtn.TabIndex = 3;
@@ -41,15 +43,27 @@
             this.cancelDisplayQuoteBtn.UseVisualStyleBackColor = true;
             this.cancelDisplayQuoteBtn.Click += new System.EventHandler(this.cancelDisplayQuoteBtn_Click);
             // 
+            // displayDataGrid
+            // 
+            this.displayDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.displayDataGrid.Location = new System.Drawing.Point(42, 12);
+            this.displayDataGrid.Name = "displayDataGrid";
+            this.displayDataGrid.ReadOnly = true;
+            this.displayDataGrid.Size = new System.Drawing.Size(511, 276);
+            this.displayDataGrid.TabIndex = 4;
+            // 
             // DisplayQuotes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(589, 372);
+            this.Controls.Add(this.displayDataGrid);
             this.Controls.Add(this.cancelDisplayQuoteBtn);
             this.Name = "DisplayQuotes";
             this.Text = "DisplayQuotes";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DisplayQuotes_FormClosed);
+            this.Load += new System.EventHandler(this.DisplayQuotes_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.displayDataGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -57,5 +71,6 @@
         #endregion
 
         private System.Windows.Forms.Button cancelDisplayQuoteBtn;
+        private System.Windows.Forms.DataGridView displayDataGrid;
     }
 }

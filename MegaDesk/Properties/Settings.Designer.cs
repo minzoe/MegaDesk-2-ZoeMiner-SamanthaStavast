@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MegaDesk_3_ZoeMiner.Properties
+namespace MegaDesk.Properties
 {
 
 
