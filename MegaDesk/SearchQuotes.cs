@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace MegaDesk
 {
@@ -46,20 +47,20 @@ namespace MegaDesk
 
             // Populate Grid
             DataTable table = new DataTable();
-            table.Columns.Add("Shipping");
-            table.Columns.Add("Name");
             table.Columns.Add("Date");
+            table.Columns.Add("Material");
             table.Columns.Add("Width");
             table.Columns.Add("Depth");
             table.Columns.Add("Drawers");
-            table.Columns.Add("Material");
+            table.Columns.Add("Shipping");
             table.Columns.Add("Price");
+            table.Columns.Add("Name");
 
-            StreamReader sr = new StreamReader(@"../quotes.txt");
-            while (!sr.EndOfStream)
+            string text = File.ReadAllText(@"quotes.json");
+            var list = JsonConvert.DeserializeObject<List<DeskQuote>>(text);
+            foreach (var item in list)
             {
-                string[] parts = sr.ReadLine().Split(',');
-                table.Rows.Add(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6], parts[7]);
+                table.Rows.Add(item.Date, item.Desk.Material, item.Desk.Width, item.Desk.Depth, item.Desk.Drawers, item.Shipping, item.Price, item.Customer);
             }
 
             displayDataGrid.DataSource = table;
@@ -71,25 +72,24 @@ namespace MegaDesk
 
             // Populate Grid
             DataTable table = new DataTable();
-            table.Columns.Add("Shipping");
-            table.Columns.Add("Name");
             table.Columns.Add("Date");
+            table.Columns.Add("Material");
             table.Columns.Add("Width");
             table.Columns.Add("Depth");
             table.Columns.Add("Drawers");
-            table.Columns.Add("Material");
+            table.Columns.Add("Shipping");
             table.Columns.Add("Price");
+            table.Columns.Add("Name");
 
-            StreamReader sr = new StreamReader(@"../quotes.txt");
-            while (!sr.EndOfStream)
+            string text = File.ReadAllText(@"quotes.json");
+            var list = JsonConvert.DeserializeObject<List<DeskQuote>>(text);
+            foreach (var item in list)
             {
-                string[] parts = sr.ReadLine().Split(',');
-                if (parts[6] == material.ToString())
+                if (item.Desk.Material == material)
                 {
-                    table.Rows.Add(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6], parts[7]);
+                    table.Rows.Add(item.Date, item.Desk.Material, item.Desk.Width, item.Desk.Depth, item.Desk.Drawers, item.Shipping, item.Price, item.Customer);
                 }
             }
-
             displayDataGrid.DataSource = table;
         }
     }

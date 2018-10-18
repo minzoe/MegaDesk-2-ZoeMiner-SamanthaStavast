@@ -33,11 +33,12 @@ namespace MegaDesk
             Normal14Days
         }
 
-        public Desk Desk { get; }
-        public Delivery Shipping { get; }
-        public string Customer { get; }
-        public DateTime Date { get; }
-        
+        public Desk Desk { get; set; }
+        public Delivery Shipping { get; set; }
+        public string Customer { get; set; }
+        public DateTime Date { get; set; }
+        public decimal Price { get; set; }
+
 
         public DeskQuote(Desk desk, Delivery time, string name, DateTime date)
         {
@@ -45,9 +46,10 @@ namespace MegaDesk
             Shipping = time;
             Customer = name;
             Date = date;
+            Price = GetQuote(desk, time);
         }
 
-        public decimal GetQuote(Desk desk, DeskQuote deskQuote)
+        public decimal GetQuote(Desk desk, Delivery time)
         {
             decimal totalQuote = BASE_DESK_PRICE;
             decimal surfaceArea = desk.Width * desk.Depth;
@@ -88,11 +90,11 @@ namespace MegaDesk
                     break;
             }
 
-            if (deskQuote.Shipping == Delivery.Normal14Days)
+            if (time == Delivery.Normal14Days)
             {
                 totalQuote += 0;
             }
-            else if (deskQuote.Shipping == Delivery.Rush3Days)
+            else if (time == Delivery.Rush3Days)
             {
                 if (surfaceArea < 1000)
                 {
@@ -107,7 +109,7 @@ namespace MegaDesk
                     totalQuote += Day3_Mid;
                 }
             }
-            else if (deskQuote.Shipping == Delivery.Rush5Days)
+            else if (time == Delivery.Rush5Days)
             {
                 if (surfaceArea < 1000)
                 {
@@ -122,7 +124,7 @@ namespace MegaDesk
                     totalQuote += Day5_Mid;
                 }
             }
-            else if (deskQuote.Shipping == Delivery.Rush7Days)
+            else if (time == Delivery.Rush7Days)
             {
                 if (surfaceArea < 1000)
                 {

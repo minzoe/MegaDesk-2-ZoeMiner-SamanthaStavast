@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using MegaDesk;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace MegaDesk
 {
@@ -87,19 +89,30 @@ namespace MegaDesk
             Desk.SurfaceMaterial deskMaterial = (Desk.SurfaceMaterial)surfaceInput.SelectedItem;
             DeskQuote.Delivery shipping = (DeskQuote.Delivery)timeInput.SelectedItem;
             string name = nameInput.Text;
-            DateTime date = new DateTime();
+            DateTime date = DateTime.Today;
 
             Desk desk = new Desk(width, depth, drawers, deskMaterial);
             DeskQuote quote = new DeskQuote(desk, shipping, name, date);
 
-            decimal price = quote.GetQuote(desk, quote);
-            priceOutput.Text = price.ToString();
+            priceOutput.Text = quote.Price.ToString();
             priceOutput.Visible = true;
             priceLabel.Visible = true;
 
-            TextWriter file = new StreamWriter(@"../quotes.txt", true);
-            file.WriteLine(quote.Shipping + "," + quote.Customer + "," + quote.Date + "," + desk.Width + "," + desk.Depth + "," + desk.Drawers + "," + desk.Material + "," + price);
-            file.Close();
+            string filepath = "quotes.json";
+            if (File.Exists(filepath))
+            {
+                string text = File.ReadAllText(filepath);
+                var list = JsonConvert.DeserializeObject<List<DeskQuote>>(text);
+                list.Add(quote);
+                var convertedJson = JsonConvert.SerializeObject(list, Formatting.Indented);
+                File.WriteAllText(filepath, convertedJson);
+            } else
+            {
+                List<DeskQuote> list = new List<DeskQuote>();
+                list.Add(quote);
+                var convertedJson = JsonConvert.SerializeObject(list, Formatting.Indented);
+                File.WriteAllText(filepath, convertedJson);
+            }
         }
     }
 }

@@ -54,7 +54,7 @@
             this.cancelAddNewQuoteBtn.Location = new System.Drawing.Point(113, 304);
             this.cancelAddNewQuoteBtn.Name = "cancelAddNewQuoteBtn";
             this.cancelAddNewQuoteBtn.Size = new System.Drawing.Size(160, 48);
-            this.cancelAddNewQuoteBtn.TabIndex = 2;
+            this.cancelAddNewQuoteBtn.TabIndex = 8;
             this.cancelAddNewQuoteBtn.Text = "Cancel";
             this.cancelAddNewQuoteBtn.UseVisualStyleBackColor = true;
             this.cancelAddNewQuoteBtn.Click += new System.EventHandler(this.cancelAddNewQuoteBtn_Click);
@@ -75,7 +75,7 @@
             0});
             this.widthInput.Name = "widthInput";
             this.widthInput.Size = new System.Drawing.Size(64, 29);
-            this.widthInput.TabIndex = 3;
+            this.widthInput.TabIndex = 2;
             this.widthInput.Value = new decimal(new int[] {
             24,
             0,
@@ -138,7 +138,7 @@
             this.nameInput.Location = new System.Drawing.Point(233, 28);
             this.nameInput.Name = "nameInput";
             this.nameInput.Size = new System.Drawing.Size(186, 29);
-            this.nameInput.TabIndex = 12;
+            this.nameInput.TabIndex = 1;
             // 
             // label6
             // 
@@ -155,7 +155,7 @@
             this.submitAddNewQuoteBtn.Location = new System.Drawing.Point(361, 304);
             this.submitAddNewQuoteBtn.Name = "submitAddNewQuoteBtn";
             this.submitAddNewQuoteBtn.Size = new System.Drawing.Size(160, 48);
-            this.submitAddNewQuoteBtn.TabIndex = 15;
+            this.submitAddNewQuoteBtn.TabIndex = 7;
             this.submitAddNewQuoteBtn.Text = "Submit";
             this.submitAddNewQuoteBtn.UseVisualStyleBackColor = true;
             this.submitAddNewQuoteBtn.Click += new System.EventHandler(this.submitAddNewQuoteBtn_Click);
@@ -176,7 +176,7 @@
             0});
             this.depthInput.Name = "depthInput";
             this.depthInput.Size = new System.Drawing.Size(64, 29);
-            this.depthInput.TabIndex = 16;
+            this.depthInput.TabIndex = 3;
             this.depthInput.Value = new decimal(new int[] {
             12,
             0,
@@ -194,7 +194,7 @@
             0});
             this.drawersInput.Name = "drawersInput";
             this.drawersInput.Size = new System.Drawing.Size(64, 29);
-            this.drawersInput.TabIndex = 17;
+            this.drawersInput.TabIndex = 4;
             // 
             // surfaceInput
             // 
@@ -203,7 +203,7 @@
             this.surfaceInput.Location = new System.Drawing.Point(421, 85);
             this.surfaceInput.Name = "surfaceInput";
             this.surfaceInput.Size = new System.Drawing.Size(121, 32);
-            this.surfaceInput.TabIndex = 18;
+            this.surfaceInput.TabIndex = 5;
             // 
             // timeInput
             // 
@@ -212,7 +212,7 @@
             this.timeInput.Location = new System.Drawing.Point(421, 154);
             this.timeInput.Name = "timeInput";
             this.timeInput.Size = new System.Drawing.Size(121, 32);
-            this.timeInput.TabIndex = 19;
+            this.timeInput.TabIndex = 6;
             // 
             // priceOutput
             // 
