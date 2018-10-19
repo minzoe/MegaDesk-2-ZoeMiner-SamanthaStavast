@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Windows.Forms;
 
 namespace MegaDesk
 {
@@ -14,15 +16,6 @@ namespace MegaDesk
         const decimal PINE_COST = 50.00M;
         const decimal ROSEWOOD_COST = 300.00M;
         const decimal VENEER_COST = 125.00M;
-        const decimal Day3_Less = 60M;
-        const decimal Day3_Mid = 70M;
-        const decimal Day3_Great = 80M;
-        const decimal Day5_Less = 40M;
-        const decimal Day5_Mid = 50M;
-        const decimal Day5_Great = 60M;
-        const decimal Day7_Less = 30M;
-        const decimal Day7_Mid = 35M;
-        const decimal Day7_Great = 40M;
 
         // enums
         public enum Delivery
@@ -38,7 +31,7 @@ namespace MegaDesk
         public string Customer { get; set; }
         public DateTime Date { get; set; }
         public decimal Price { get; set; }
-
+        public int[][] rushOrder;
 
         public DeskQuote(Desk desk, Delivery time, string name, DateTime date)
         {
@@ -47,6 +40,7 @@ namespace MegaDesk
             Customer = name;
             Date = date;
             Price = GetQuote(desk, time);
+            rushOrder = GetRushOrder();
         }
 
         public decimal GetQuote(Desk desk, Delivery time)
@@ -90,57 +84,82 @@ namespace MegaDesk
                     break;
             }
 
-            if (time == Delivery.Normal14Days)
+            try
             {
-                totalQuote += 0;
-            }
-            else if (time == Delivery.Rush3Days)
-            {
-                if (surfaceArea < 1000)
-                {
-                    totalQuote += Day3_Less;
-                }
-                else if (surfaceArea > 2000)
-                {
-                    totalQuote += Day3_Great;
-                }
-                else
-                {
-                    totalQuote += Day3_Mid;
-                }
-            }
-            else if (time == Delivery.Rush5Days)
-            {
-                if (surfaceArea < 1000)
-                {
-                    totalQuote += Day5_Less;
-                }
-                else if (surfaceArea > 2000)
-                {
-                    totalQuote += Day5_Great;
-                }
-                else
-                {
-                    totalQuote += Day5_Mid;
-                }
-            }
-            else if (time == Delivery.Rush7Days)
-            {
-                if (surfaceArea < 1000)
-                {
-                    totalQuote += Day7_Less;
-                }
-                else if (surfaceArea > 2000)
-                {
-                    totalQuote += Day7_Great;
-                }
-                else
-                {
-                    totalQuote += Day7_Mid;
-                }
-            }        
 
+                if (time == Delivery.Normal14Days)
+                {
+                    totalQuote += 0;
+                }
+                else if (time == Delivery.Rush3Days)
+                {
+                    if (surfaceArea < 1000)
+                    {
+                        totalQuote += rushOrder[0][0];
+                    }
+                    else if (surfaceArea > 2000)
+                    {
+                        totalQuote += rushOrder[0][2];
+                    }
+                    else
+                    {
+                        totalQuote += rushOrder[0][1];
+                    }
+                }
+                else if (time == Delivery.Rush5Days)
+                {
+                    if (surfaceArea < 1000)
+                    {
+                        totalQuote += rushOrder[1][0];
+                    }
+                    else if (surfaceArea > 2000)
+                    {
+                        totalQuote += rushOrder[1][2];
+                    }
+                    else
+                    {
+                        totalQuote += rushOrder[1][1];
+                    }
+                }
+                else if (time == Delivery.Rush7Days)
+                {
+                    if (surfaceArea < 1000)
+                    {
+                        totalQuote += rushOrder[2][0];
+                    }
+                    else if (surfaceArea > 2000)
+                    {
+                        totalQuote += rushOrder[2][2];
+                    }
+                    else
+                    {
+                        totalQuote += rushOrder[2][1];
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error with file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0.00M;
+            }
             return totalQuote;
+        }
+
+        private int[][] GetRushOrder()
+        {
+            string[] lines = File.ReadAllLines("rushOrderPrice.txt");
+
+            int r = 0;
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if ((i + 1) % 3 == 0)
+                {
+                    r++;
+                }
+                rushOrder[r][i] = Int32.Parse(lines[i]);
+            }
+            return rushOrder;
         }
     }
 }
