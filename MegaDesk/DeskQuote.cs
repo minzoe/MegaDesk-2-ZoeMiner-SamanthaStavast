@@ -31,7 +31,7 @@ namespace MegaDesk
         public string Customer { get; set; }
         public DateTime Date { get; set; }
         public decimal Price { get; set; }
-        public int[][] rushOrder;
+        public int[,] rushOrder = new int[3, 3];
 
         public DeskQuote(Desk desk, Delivery time, string name, DateTime date)
         {
@@ -95,45 +95,45 @@ namespace MegaDesk
                 {
                     if (surfaceArea < 1000)
                     {
-                        totalQuote += rushOrder[0][0];
+                        totalQuote += rushOrder[0, 0];
                     }
                     else if (surfaceArea > 2000)
                     {
-                        totalQuote += rushOrder[0][2];
+                        totalQuote += rushOrder[0, 2];
                     }
                     else
                     {
-                        totalQuote += rushOrder[0][1];
+                        totalQuote += rushOrder[0, 1];
                     }
                 }
                 else if (time == Delivery.Rush5Days)
                 {
                     if (surfaceArea < 1000)
                     {
-                        totalQuote += rushOrder[1][0];
+                        totalQuote += rushOrder[1, 0];
                     }
                     else if (surfaceArea > 2000)
                     {
-                        totalQuote += rushOrder[1][2];
+                        totalQuote += rushOrder[1, 2];
                     }
                     else
                     {
-                        totalQuote += rushOrder[1][1];
+                        totalQuote += rushOrder[1, 1];
                     }
                 }
                 else if (time == Delivery.Rush7Days)
                 {
                     if (surfaceArea < 1000)
                     {
-                        totalQuote += rushOrder[2][0];
+                        totalQuote += rushOrder[2, 0];
                     }
                     else if (surfaceArea > 2000)
                     {
-                        totalQuote += rushOrder[2][2];
+                        totalQuote += rushOrder[2, 2];
                     }
                     else
                     {
-                        totalQuote += rushOrder[2][1];
+                        totalQuote += rushOrder[2, 1];
                     }
                 }
             }
@@ -145,19 +145,22 @@ namespace MegaDesk
             return totalQuote;
         }
 
-        private int[][] GetRushOrder()
+        private int[,] GetRushOrder()
         {
             string[] lines = File.ReadAllLines("rushOrderPrice.txt");
 
             int r = 0;
+            int c = 0;
 
-            for (int i = 0; i < lines.Length; i++)
+            for (int i = 0; i < lines.Length - 1; i++)
             {
+                ++c;
                 if ((i + 1) % 3 == 0)
                 {
-                    r++;
+                    c = 0;
+                    ++r;
                 }
-                rushOrder[r][i] = Int32.Parse(lines[i]);
+                rushOrder[r, c] = Int32.Parse(lines[i]);
             }
             return rushOrder;
         }
