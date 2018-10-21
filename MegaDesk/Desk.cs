@@ -17,10 +17,10 @@ namespace MegaDesk
             Pine
         }
 
-        public decimal Width { get; }
-        public decimal Depth { get; }
-        public int Drawers { get; }
-        public SurfaceMaterial Material { get; }
+        public decimal Width { get; set; }
+        public decimal Depth { get; set; }
+        public int Drawers { get; set;  }
+        public SurfaceMaterial Material { get; set; }
 
         public Desk(decimal width, decimal depth, int drawers, SurfaceMaterial deskMaterial)
         {
